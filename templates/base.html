@@ -1,0 +1,42 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block page_title %}Home{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block meta %}
+    {% endblock %}
+    {% block cdn_css %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'src/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">
+    
+    {% endblock cdn_css %}
+    
+    
+   
+</head>
+<body>
+{% block content %}{% endblock content %}
+
+
+{% block js %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js' %}"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'src/angular.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'src/angular.route.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'src/angular.ui.bootstrap.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+<Script src="{% static 'controllers/loginController.js' %}"></Script>
+<Script src="{% static 'controllers/dashBoardCtrl.js' %}"></Script>
+
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIqXbRkI0ZouH8f1A9lGTxQxviDm5surs"
+	type="text/javascript"></script>
+
+
+{% endblock js %}
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>A simple guide to getting started with Vue.js</title>
+    <link rel="stylesheet" type="text/css" href="src/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="app.css">
+    <script type="text/javascript" src="src/angular.min.js"></script>
+    <script type="text/javascript" src="src/angular.route.min.js"></script>
+    <script type="text/javascript" src="src/angular.ui.bootstrap.js"></script>
+
+    <script type="text/javascript" src="app.js"></script>
+    <Script src="controllers/loginController.js"></Script>
+    <Script src="controllers/dashBoardCtrl.js"></Script>
+
+    <!--<script src="src/vue-router.js"></script>--><!--
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>-->
+    <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script>
+     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>-->
+
+
+    <!--<script src="https://unpkg.com/vue/dist/vue.js"></script>-->
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIqXbRkI0ZouH8f1A9lGTxQxviDm5surs"
+            type="text/javascript"></script>
+</head>
+<body>
+<div id="app">
+
+
+    <div data-ui-view=""></div>
+
+</div>
+<!--
+<div id="map" style="width:80%; height:800px"></div>--><!--
+<div id="map" style="width:80%; height:800px"></div>-->
+<!--<script>
+   /* var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 8
+        });
+        console.log('map',map);
+    }*/
+
+   function initMap() {
+       console.log('elem---111',document.getElementById("map"));
+       var myLatlng = new google.maps.LatLng(-34.397, 150.644);
+       var myOptions = {
+           zoom: 8,
+           center: myLatlng,
+           mapTypeId: google.maps.MapTypeId.ROADMAP
+       };
+       var map = new google.maps.Map(document.getElementById("map"), myOptions);
+   }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIqXbRkI0ZouH8f1A9lGTxQxviDm5surs&callback=initMap"
+        type="text/javascript"></script>-->
+
+</body>
+</html>

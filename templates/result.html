@@ -1,0 +1,83 @@
+<div class="col-xs-12 list-tiems">
+            <h1 class="remove_margin">POLLING BOOTH</h1>
+            <ul class="form-list">
+                <li><span>Pollling Both Number:</span><span>{{searchdata.number}}</span></li>
+                <li><span>Name</span><span>{{searchdata.name}}</span></li>
+                <li><span>Booth Committee Member:</span><span>{{searchdata.booth_committee_member}}</span></li>
+                <li><span>Voters:</span><span>{{searchdata.voters}}</span></li>
+                <li><span>Village or Ward:</span><span>{{searchdata.village_or_ward}}</span></li>
+                <li><span>Mandal or Town:</span><span> {{searchdata.mandal_or_town}}</span></li>
+                <li><span>Constituency:</span><span>{{searchdata.constituency}}</span></li>
+                <li><span>Total Population:</span><span>{{searchdata.total_population}}</span></li>
+                <li><span>Total number of voters:</span><span>{{searchdata.total_number_of_voters}}</span></li>
+                <li><span>Past 2 Elections Data:</span><span>{{searchdata.past_2_elections_data}}</span></li>
+                <li><span>Cast Metrics:</span><span>{{searchdata.cast_metrics}}</span></li>
+                <li><span>Rural/Urban/Semi:</span><span>{{searchdata.rural_urban_semi}}</span></li>
+                <li><span>Voting Influencers:</span><span>{{searchdata.voting_influencers}}</span></li>
+            </ul>
+        </div>
+
+<div class="col-xs-12 remove_padding data-table">
+    <div class="data-table">
+        <!--<h4>Polling Booth1</h4>-->
+        <div class="col-xs-12">
+            <div class="row">
+            <div class="pull-left">
+            <label>Show</label>
+            <select><option>10</option></select>
+             </div>
+            <div class="pull-right text-search">
+                <label>Search</label>
+                <input type="text">
+                </div>
+            </div>
+        </div>
+        <div class="data-table-scroll">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Pollling Both Number</th>
+            <th>Name</th>
+            <th>Booth Committee Member</th>
+            <th>Voters</th>
+            <th>Village or Ward</th>
+            <th>Mandal or Town</th>
+            <th>Total Population</th>
+            <th>Total number of voters</th>
+            <th>Past 2 Elections Data</th>
+            <th>Cast Metrics</th>
+            <th>Rural/Urban/Semi</th>
+            <th>Voting Influencers</th>
+            <th>Comments</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in result %}
+        <tr>
+            <td>{{i.number}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.constituency_incharge}}</td>
+            <td>{{i.voters}}</td>
+            <td>{{i.village_or_ward}}</td>
+            <td>{{i.total_number_of_mandal_or_town}}</td>
+            <td>{{i.total_population}}</td>
+            <td>{{i.total_number_of_voters}}</td>
+            <td>{{i.past_2_elections_data}}</td>
+            <td>{{i.cast_metrics}}</td>
+            <td>{{i.rural_urban_semi}}</td>
+            <td>{{i.voting_influencers}}</td>
+			<td>&nbsp;</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        </div>
+        </div>
+    <div class="col-xs-12">
+        <ul class="pagination remove_margin pull-right">
+            <li><a href="#">Prev</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">Next</a></li>
+        </ul>
+    </div>
+    </div>
