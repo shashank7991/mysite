@@ -9,10 +9,11 @@ ROLE_CHOICES = (
 	)
 
 class Users(models.Model):
-	company_id = models.CharField(max_length=100)
-	email = models.EmailField(max_length=100)
-	role = models.CharField(max_length=20,choices=ROLE_CHOICES)
-	password = models.CharField(max_length=20, default="abcd@1234")
+    company_id = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    role = models.CharField(max_length=20,choices=ROLE_CHOICES)
+    rank = models.FloatField(null=True,blank=True)
+    password = models.CharField(max_length=20, default="abcd@1234")
 
 
 
@@ -30,8 +31,8 @@ class Trips(models.Model):
 class Events(models.Model):
 	trip_id = models.ForeignKey(Trips)
 	event_type = models.CharField(max_length=100)
-	event_ts = models.DateTimeField()
-	event_ts_local = models.DateTimeField()
+	event_ts = models.DateTimeField(auto_now_add=True)
+	event_ts_local = models.DateTimeField(auto_now_add=True)
 	geo_lat = models.FloatField()
 	geo_long = models.FloatField()
 	altitude = models.FloatField()

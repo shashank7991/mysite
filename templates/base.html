@@ -22,8 +22,8 @@
 
 
 {% block js %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js' %}"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' %}"></script>
+ <script src="{% static 'js/jquery-2.0.3.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'src/angular.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'src/angular.route.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'src/angular.ui.bootstrap.js' %}"></script>
@@ -32,6 +32,13 @@
 <Script src="{% static 'controllers/loginController.js' %}"></Script>
 <Script src="{% static 'controllers/dashBoardCtrl.js' %}"></Script>
 
+
+    <script src="{% static 'js/highcharts.js' %}"></script>
+    <script src="{% static 'controllers/highcharts-ng.js' %}"></script>
+
+    <Script src="{% static 'controllers/adminDashBoard.js' %}"></Script>
+
+    <Script src="{% static 'controllers/clientDashBoard.js' %}"></Script>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIqXbRkI0ZouH8f1A9lGTxQxviDm5surs"
 	type="text/javascript"></script>

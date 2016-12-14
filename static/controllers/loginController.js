@@ -19,12 +19,22 @@ myApp.controller("loginController",['$scope','$http','$state',function($scope,$h
             headers: {'Content-Type': 'application/json'}
         }).success(function(resp){
             console.log('resp-',resp);
-           if(resp[0]){
+           var user = resp[0];
+           if(user){
                var userId = resp[0].id;
-               $state.go('dashBoard',{'userId':userId});
+               if(user.role == 'D'){
+                   $state.go('dashBoard',{'userId':userId});
+               }else if(user.role == "A"){
+                   $state.go('admin-dashBoard',{'userId':userId});
+               }else if(user.role == "C"){
+                   $state.go('client-dashBoard',{'userId':user.company_id});
+               }
+
            }
 
-        });
+        }).error(function(){
+           alert('please enter correct detailes')
+       });
 
     }
 }]);

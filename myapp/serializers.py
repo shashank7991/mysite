@@ -4,7 +4,7 @@ from myapp.models import *
 class UsersSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Users
-        fields = ('id','company_id','email','role')
+        fields = ('id','company_id','email','role','rank')
 
 class TripsSerializer(serializers.HyperlinkedModelSerializer):
 	user_id = UsersSerializer()

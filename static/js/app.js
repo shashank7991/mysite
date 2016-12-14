@@ -1,7 +1,7 @@
 
-var myApp = angular.module("myApp", ['ui.router','ui.bootstrap']);
+var myApp = angular.module("myApp", ['ui.router','ui.bootstrap',"highcharts-ng"]);
 
-myApp.config(function ($stateProvider, $urlRouterProvider) {
+myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $urlRouterProvider.when("", "/");
 
     $stateProvider
@@ -15,12 +15,18 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "static/templates/dashBoard.html",
             controller:"dashBoardController"
         })
-    /*  .state("PageTab.Page2", {
-            url: "/Page2",
-            templateUrl: "Page2.html"
+      .state("admin-dashBoard", {
+            url: "/admin-dashBoard/:userId",
+            templateUrl: "static/templates/adminDashBoard.html",
+            controller:"adminDashBoardController"
         })
-        .state("PageTab.Page3", {
-            url: "/Page3",
-            templateUrl: "Page3.html"
-        });*/
+     .state("client-dashBoard", {
+            url: "/client-dashBoard/:userId",
+            templateUrl: "statictemplates/clientDashBoard.html",
+            controller:"clientDashBoardController"
+        });
+
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+   $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+
 });

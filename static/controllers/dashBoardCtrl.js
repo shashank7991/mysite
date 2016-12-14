@@ -35,8 +35,9 @@ myApp.controller("dashBoardController",['$scope','$http','$stateParams','$uibMod
         }).success(function(resp){
             console.log('resp-click',resp);
             //$scope.data= resp;
-            angular.forEach(resp,function(val,key){
-                $scope.latLng.push({'lat':val.geo_lat,'lng':val.geo_long})
+            angular.forEach(resp,function(v,k){
+                console.log('v----',v)
+                $scope.latLng.push({'lat':v.geo_lat,'lng':v.geo_long})
             });
             //initMap();
             var modalInstance = $uibModal.open({
