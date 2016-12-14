@@ -1,6 +1,6 @@
 from django.shortcuts import render , redirect
 from myapp.forms import *
-from django.views
+from django.views import View
 from myapp.serializers import *
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -10,7 +10,7 @@ import csv
 
 # Create your views here.
 
-class HomeView(View1):
+class HomeView(View):
 	def get(self, request, *args, **kwargs):
 		return render(request,'index.html')
 	def post(self, request):
