@@ -10,7 +10,10 @@ myApp.controller("adminDashBoardController",['$scope','$http','$stateParams','$u
     //assign session param to scope variable
     $scope.userId = $stateParams.userId;
 
-    $http({
+
+
+    $scope.bindData = function(){
+        $http({
         method: 'GET',
         url: '/trips',
        // data:{'user_id': $scope.userId},
@@ -23,6 +26,10 @@ myApp.controller("adminDashBoardController",['$scope','$http','$stateParams','$u
         //generate datatables
         $scope.tableParams = new NgTableParams({page: 1, count: 10}, {data: $scope.data});
     });
+    };
+
+
+    $scope.bindData();
 
     //date selector get date
     $scope.getDate=function(val){
@@ -46,7 +53,9 @@ myApp.controller("adminDashBoardController",['$scope','$http','$stateParams','$u
             headers: {'Content-Type': 'application/json'}
         }).success(function(resp){
             console.log('resp-aaaa',resp);
+                $scope.bindData();
             //page reload
+            console.log('state--',$state);
             $state.reload();
         });
     }
