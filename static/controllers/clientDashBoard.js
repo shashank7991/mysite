@@ -18,6 +18,29 @@
         headers: {'Content-Type': 'application/json'}
     }).success(function(resp){
         console.log('resp-aaaa',resp);
+		drivers=[];
+		scores=[];
+		for(var i=0;i<resp.length;i++){
+		drivers.push(resp[i].email);
+		scores.push(resp[i].rank);
+		}
+		console.log(drivers);
+		console.log(scores);
+		Highcharts.chart('driverChart', {
+				title: {
+					text: 'Score by Drivers'
+				},
+				chart:{
+                    type:'column'
+                },
+				    xAxis: {
+				        categories: drivers
+				    },
+
+				    series: [{name:"Drivers",
+				        data: scores
+				    }]
+				});
 
         angular.forEach(resp,function(val,key){
 
@@ -64,6 +87,9 @@
             }).success(function(totalResp) {
                 console.log('rrrrrrrrrrrrrrrrr', totalResp);
                 $scope.isLoading = false;
+				for(var i=0;i<totalResp.length;i++){
+				totalResp[i].rank=totalResp[i].rank.toFixed(2);
+				}
                 $scope.data= totalResp;
                 $scope.tableParams = new NgTableParams({page: 1, count: 10}, {data: $scope.data});
             });

@@ -1,57 +1,59 @@
 
 <div>
     <div class="col-lg-12">
-        <h1 class="col-lg-6">Detailes</h1>
-    <h3 class="col-lg-6 "><button class="btn pull-right btn-warning" ng-click="logout()">logout</button></h3>
-
+        <h1 class="col-lg-6">Trip Details</h1>
+        <h3 class="col-lg-6 "><button class="btn pull-right btn-warning" ng-click="logout()">Logout</button></h3>
     </div>
-<!--Date Filter-->
-    <div class="col-lg-12">
-     <div class="input-group col-lg-4 pull-left" style="width:230px;border: 1px solid black; margin-right: 5px">
 
-         <input type="text"  class="form-control" placeholder="Start Date" uib-datepicker-popup="MM/dd/yyyy" ng-model="startDate" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+	<div class="row"><hr></div>
+
+    <!--Date Filter-->
+    <div class="col-lg-12">
+        <div class="input-group col-lg-4 pull-left" style="width:230px;border: 1px solid black; margin-right: 5px">
+            <input type="text"  class="form-control" placeholder="Start Date" uib-datepicker-popup="MM/dd/yyyy" ng-model="startDate" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
         </div>
 
-    <div class="input-group col-lg-4 pull-left" style="width:230px;border: 1px solid black; margin-right: 5px">
-
-          <input type="text"  class="form-control" placeholder="End Date" uib-datepicker-popup="MM/dd/yyyy" ng-model="endDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+        <div class="input-group col-lg-4 pull-left" style="width:230px;border: 1px solid black; margin-right: 5px">
+            <input type="text"  class="form-control" placeholder="End Date" uib-datepicker-popup="MM/dd/yyyy" ng-model="endDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
         </div>
-       <div class="col-lg-2">
-      <button class="btn btn-primary" ng-click="submitDate(startDate,endDate)">submit</button>
-       </div>
+
+        <div class="col-lg-2">
+            <button class="btn btn-primary" ng-click="submitDate(startDate,endDate)">submit</button>
+        </div>
     </div>
-    <br>
+
+    <div class="row"><hr></div>
 
     <!--  Driver Dashboard Table-->
-<div class="dashBoardTable">
-    <table ng-table="tableParams" class="table table-bordered" show-filter="true" >
-        <tbody>
-        <tr ng-repeat="val in $data" ng-click="getGeoData(val)">
-            <td data-title="'Tripid'" filter="{id: 'text'}" sortable="'id'" >{{val.id}}</td>
-            <td data-title="'Distance'" sortable="'distance'">{{val.distance}}</td>
-            <td data-title="'Duration'" sortable="'duration'">{{val.duration}}</td>
-            <td data-title="'Start_date'" ng-bind="getDate(val.start_time)"></td>
-            <td  data-title="'End_date'" ng-bind="getDate(val.end_time)"></td>
-            <td data-title="'Score'" filter="{score: 'text'}" sortable="'score'" >{{val.score}}</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+    <div class="dashBoardTable">
+        <table ng-table="tableParams" class="table table-bordered" show-filter="true" >
+            <tbody>
+            <tr ng-repeat="val in $data" ng-click="getGeoData(val)">
+                <td data-title="'Trip Id'" filter="{id: 'text'}" sortable="'id'" >{{val.id}}</td>
+                <td data-title="'Distance&nbsp;&nbsp; (Meters)'" sortable="'distance'">{{val.distance}}</td>
+                <td data-title="'Duration&nbsp;&nbsp; (Minutes)'" sortable="'duration'">{{val.duration}}</td>
+                <td data-title="'Start Datetime'" ng-bind="getDateTime(val.start_time)"></td>
+                <td  data-title="'End Datetime'" ng-bind="getDateTime(val.end_time)"></td>
+                <td data-title="'Score'" filter="{score: 'text'}" sortable="'score'" >{{val.score}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
     <!--Google Maps for Trip-->
-    <script type="text/ng-template" id="gMap.html">
+    <script type="text/ng-template" id="gMap.html" >
 
         <h1>Map</h1>
         <div id="map" style="width:100%; height:480px"></div>
 
         <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">Ok</button>
             <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
         </div>
     </script>

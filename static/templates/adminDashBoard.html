@@ -1,21 +1,22 @@
 
 
 <div class="col-lg-12">
-    <h1 class="col-lg-6">Admin Dash Board</h1>
-    <h3 class="col-lg-6 "><button class="btn pull-right btn-warning" ng-click="logout()">logout</button></h3>
+    <h1 class="col-lg-6">Admin Dashboard</h1>
+    <h3 class="col-lg-6 "><button class="btn pull-right btn-warning" ng-click="logout()">Logout</button></h3>
 </div>
 <!--Admin datatable for trips-->
 <div class="dashBoardTable">
     <table class="table table-bordered" ng-table="tableParams" show-filter="true">
         <tbody>
         <tr ng-repeat="val in $data" ng-click="showCharts(val)">
-            <td data-title="'UserId'" sortable="'id'" filter="{id: 'text'}">{{val.id}}</td>
-            <td data-title="'Distance'" sortable="'distance'">{{val.distance}}</td>
-            <td data-title="'Duration'" sortable="'duration'">{{val.duration}}</td>
-            <td data-title="'StartDate'"  ng-bind="getDate(val.start_time)"></td>
-            <td data-title="'EndDate'"  ng-bind="getDate(val.end_time)"></td>
+            <td data-title="'Id'" sortable="'id'" filter="{id: 'text'}">{{val.id}}</td>
+            <td data-title="'Email'" sortable="'user_id.email'">{{val.user_id.email}}</td>
+            <td data-title="'Company Id'" sortable="'user_id.company_id'">{{val.user_id.company_id}}</td>
+            <td data-title="'Distance&nbsp;&nbsp; (Meters)'" sortable="'distance'">{{val.distance}}</td>
+            <td data-title="'Duration&nbsp;&nbsp; (Minutes)'" sortable="'duration'">{{val.duration}}</td>
+            <td data-title="'Date'"  ng-bind="getDate(val.start_time)"></td>
             <td data-title="'Score'" sortable="'score'" filter="{score: 'text'}">{{val.score}}</td>
-            <td data-title="'Action'" sortable="'distance'"><span ng-click="deleteUser(val)"><img src="static/img/delete.png" height="15px"></span></td>
+            <td data-title="'Action'"><span ng-click="deleteUser(val)"><img src="static/img/delete.png" height="15px"></span></td>
         </tr>
         </tbody>
     </table>

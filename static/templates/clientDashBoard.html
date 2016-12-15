@@ -2,41 +2,51 @@
 <div>
 
     <div class="col-lg-12">
-        <h1 class="col-lg-6">Details</h1>
-        <h3 class="col-lg-6 "><button class="btn pull-right btn-warning" ng-click="logout()">logout</button></h3>
+        <h1 class="col-lg-6">Client Dashboard</h1>
+        <h3 class="col-lg-6 "><button class="btn pull-right btn-warning" ng-click="logout()">Logout</button></h3>
     </div>
-
+<div class="col-lg-12">
+        <h3 class="col-lg-6">Welcome {{companyName}},</h3>
+    </div>
     <br>
 
     <!--Users Data Table-->
-    <div class="dashBoardTable">
-        <h3>Drivers::</h3>
+	<div class="row">
+    <div class="col-lg-1">
+	</div>
+    <div class="col-lg-5">
+        <h3>Drivers Details:</h3>
         <table ng-table="tableParams" class="table table-bordered" show-filter="true" >
             <tbody>
             <tr ng-repeat="val in $data " ng-click="getTrips(val)">
-                <td data-title="'Rank'" sortable="'rank'" >{{$index+1}}</td>
-                <td data-title="'Email'" sortable="'email'" filter="{email: 'text'}">{{val.email}}</td>
-                <td data-title="'Role'" sortable="'role'">{{val.role}}</td>
-                <td data-title="'Company'" sortable="'company_id'" >{{val.company_id}}</td>
-                <td data-title="'Score'" sortable="'rank'" filter="{rank: 'text'}" >{{val.rank}}</td>
+                <td data-title="'Id'" sortable="'rank'" >{{$index+1}}</td>
+                <td data-title="'Email Id'" sortable="'email'" filter="{email: 'text'}">{{val.email}}</td>
+                <td data-title="'Score'" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"  sortable="'rank'" filter="{rank: 'text'}" >{{val.rank}}</td>
             </tr>
             </tbody>
         </table>
     </div>
+	
+    <div id="driverChart" class="col-lg-6">
+	
+	</div>
+	</div>
 
 
     <!--Show Trips of Users-->
     <div class="dashBoardTable" ng-show="showTripsTable">
-        <h3>Trips::</h3>
+        <h3>Trips Details:</h3>
+
+
         <table ng-table="tripTableParams" class="table table-bordered" show-filter="true">
             <tbody>
             <tr ng-repeat="val in $data" ng-click="getGeoData(val)">
-                <td data-title="'TripId'" sortable="'id'" filter="{id: 'text'}" >{{val.id}}</td>
-                <td data-title="'Distance'" sortable="'distance'" filter="{distance: 'text'}" >{{val.distance}}</td>
-                <td data-title="'Duration'" sortable="'duration'" >{{val.duration}}M</td>
+                <td data-title="'Trip Id'" sortable="'id'" filter="{id: 'text'}" >{{val.id}}</td>
+                <td data-title="'Distance&nbsp;&nbsp; (Meters)'" sortable="'distance'" filter="{distance: 'text'}" >{{val.distance}}</td>
+                <td data-title="'Duration&nbsp;&nbsp; (Minutes)'" sortable="'duration'" >{{val.duration}}</td>
                 <td data-title="'Date'" ng-bind="getDate(val.start_time)"></td>
-                <td data-title="'StartTime'" ng-bind="getTime(val.start_time)"></td>
-                <td data-title="'EndTime'" ng-bind="getTime(val.end_time)"></td>
+                <td data-title="'Start Time'" ng-bind="getTime(val.start_time)"></td>
+                <td data-title="'End Time'" ng-bind="getTime(val.end_time)"></td>
                 <td data-title="'Score'" sortable="'score'" filter="{score: 'text'}" >{{val.score}}</td>
             </tr>
             </tbody>
@@ -45,9 +55,10 @@
 
     <!--Show Events based on Users-> Trips -->
     <div class="dashBoardTable" ng-show="showEventData">
-        <h3>Events::</h3>
+        <h3>Events Details:</h3>
 
-        <!--Date Selector for filtering-->
+        <br>
+                <!--Date Selector for filtering-->
         <div class="col-lg-12">
             <div class="input-group col-lg-4 pull-left" style="width:230px;border: 1px solid black; margin-right: 5px">
 
@@ -57,27 +68,28 @@
                 </span>
             </div>
 
-        <div class="input-group col-lg-4 pull-left" style="width:230px;border: 1px solid black; margin-right: 5px">
+            <div class="input-group col-lg-4 pull-left" style="width:230px;border: 1px solid black; margin-right: 5px">
 
-          <input type="text"  class="form-control" placeholder="End Date" uib-datepicker-popup="MM/dd/yyyy" ng-model="endDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
+                <input type="text"  class="form-control" placeholder="End Date" uib-datepicker-popup="MM/dd/yyyy" ng-model="endDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </div>
+            <div class="col-lg-2">
+                <button class="btn btn-primary" ng-click="submitDate(startDate,endDate)">Submit</button>
+            </div>
         </div>
-       <div class="col-lg-2">
-      <button class="btn btn-primary" ng-click="submitDate(startDate,endDate)">submit</button>
-       </div>
-    </div>
+
+        <br>
 
         <!--Event Data Table-->
         <table  ng-table="eventTableParams" class="table table-bordered" show-filter="true">
             <tbody>
             <tr ng-repeat="val in $data" >
-                <td data-title="'EventId'" sortable="'id'" >{{val.id}}</td>
-                <td data-title="'EventType'" sortable="'event_type'" filter="{event_type: 'text'}">{{val.event_type}}</td>
+                <td data-title="'Event Id'" sortable="'id'" >{{val.id}}</td>
+                <td data-title="'Event Type'" sortable="'event_type'" filter="{event_type: 'text'}">{{val.event_type}}</td>
                 <td data-title="'Date'" ng-bind="getDate(val.event_ts_local)"></td>
-                <td data-title="'StartTime'" ng-bind="getTime(val.event_ts_local)"></td>
-                <td data-title="'EndTime'" ng-bind="getTime(val.event_ts_local)"></td>
+                <td data-title="'Time'" ng-bind="getTime(val.event_ts_local)"></td>
                 <td data-title="'Speed'" sortable="'speed'" >{{val.speed}}</td>
             </tr>
             </tbody>
@@ -98,7 +110,7 @@
         <div id="map" style="width:100%; height:480px"></div>
 
         <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">Ok</button>
             <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
         </div>
     </script>

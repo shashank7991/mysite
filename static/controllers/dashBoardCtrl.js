@@ -29,9 +29,27 @@ myApp.controller("dashBoardController",['$scope','$http','$stateParams','$uibMod
         var day = date.getDate();
         var month = date.getMonth()+1;
         var year = date.getFullYear();
+		var hours = date.getHours();
+		var min = date.getMinutes();
+		var sec = date.getSeconds();
         var modifiedDate =day+'-'+month+'-'+year;
         //console.log('myDate--',modifiedDate);
         return modifiedDate;
+        //document.write(day + ' ' + monthNames[monthIndex] + ' ' + year);
+    };
+	
+    $scope.getDateTime=function(val){
+		console.log(val);
+        var date = new Date(val);
+        var day = date.getDate();
+        var month = date.getMonth()+1;
+        var year = date.getFullYear();
+		var hours = date.getHours();
+		var min = date.getMinutes();
+		var sec = date.getSeconds();
+        var modifiedDateTime =day+'-'+month+'-'+year+" "+hours+":"+min+":"+sec ;
+        //console.log('myDate--',modifiedDate);
+        return modifiedDateTime;
         //document.write(day + ' ' + monthNames[monthIndex] + ' ' + year);
     };
     $scope.popup2={
