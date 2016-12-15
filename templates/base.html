@@ -10,6 +10,7 @@
     {% block cdn_css %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="{% static 'src/bootstrap.min.css' %}">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-table/0.8.3/ng-table.min.css" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">
     
     {% endblock cdn_css %}
@@ -27,6 +28,8 @@
 <script type="text/javascript" src="{% static 'src/angular.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'src/angular.route.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'src/angular.ui.bootstrap.js' %}"></script>
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.3.1.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-table/0.8.3/ng-table.min.js"></script>
 
 <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
 <Script src="{% static 'controllers/loginController.js' %}"></Script>

@@ -2,16 +2,7 @@ myApp.controller("loginController",['$scope','$http','$state',function($scope,$h
     $scope.user={};
     $scope.loadAll= function(user){
         console.log('asdad',user);
-        //$state.go('dashBoard',{'userId':1});
-        /*$http({
-            method: 'GET',
-            url: 'http://192.168.24.79:8080/users',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).success(function(resp){
-            console.log(resp);
-        });*/
+        //passing user json object to python controller
        $http({
             method: 'POST',
             url: '/login',
@@ -21,7 +12,10 @@ myApp.controller("loginController",['$scope','$http','$state',function($scope,$h
             console.log('resp-',resp);
            var user = resp[0];
            if(user){
+               //setting up a session
+               localStorage.setItem('userId',user.id);
                var userId = resp[0].id;
+               //Rolebase login
                if(user.role == 'D'){
                    $state.go('dashBoard',{'userId':userId});
                }else if(user.role == "A"){
@@ -33,7 +27,7 @@ myApp.controller("loginController",['$scope','$http','$state',function($scope,$h
            }
 
         }).error(function(){
-           alert('please enter correct detailes')
+           alert('Please enter correct Details...')
        });
 
     }

@@ -1,5 +1,5 @@
 
-var myApp = angular.module("myApp", ['ui.router','ui.bootstrap',"highcharts-ng"]);
+var myApp = angular.module("myApp", ['ui.router','ui.bootstrap',"highcharts-ng",'ngTable']);
 
 myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $urlRouterProvider.when("", "/");
@@ -22,7 +22,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         })
      .state("client-dashBoard", {
             url: "/client-dashBoard/:userId",
-            templateUrl: "statictemplates/clientDashBoard.html",
+            templateUrl: "static/templates/clientDashBoard.html",
             controller:"clientDashBoardController"
         });
 
