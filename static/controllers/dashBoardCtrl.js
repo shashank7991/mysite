@@ -1,4 +1,4 @@
-myApp.controller("dashBoardController",['$scope','$http','$stateParams','$uibModal','$state','NgTableParams',
+/*myApp.controller("dashBoardController",['$scope','$http','$stateParams','$uibModal','$state','NgTableParams',
     function($scope,$http,$stateParams,$uibModal,$state,NgTableParams){
     console.log('dash board',localStorage.getItem('userId'));
     $scope.userId = $stateParams.userId;
@@ -21,10 +21,10 @@ myApp.controller("dashBoardController",['$scope','$http','$stateParams','$uibMod
         $scope.tripData= resp; //not using
             // maintaining a copy of data in scope variable for date filter
         $scope.EventMainData = angular.copy(resp);
-    });
+    });*/
 
     //getting new date from date selector
-    $scope.getDate=function(val){
+    /*$scope.getDate=function(val){
         var date = new Date(val);
         var day = date.getDate();
         var month = date.getMonth()+1;
@@ -77,7 +77,8 @@ $scope.dateOptions = {
 
     $scope.getGeoData = function(val){
         //array to store all event variables lat and lng
-        $scope.latLng = [];
+        $scope.$broadcast('emitGeoData',val);
+        /!*$scope.latLng = [];
         console.log('val-',val);
         $http({
             method: 'POST',
@@ -93,7 +94,8 @@ $scope.dateOptions = {
                 $scope.latLng.push({'lat':v.geo_lat,'lng':v.geo_long})
             });
             //initMap();
-            var modalInstance = $uibModal.open({
+            if(resp.length  != 0){
+                 var modalInstance = $uibModal.open({
                 //google api template
                 templateUrl: 'gMap.html',
                 size: 'lg',
@@ -107,7 +109,11 @@ $scope.dateOptions = {
                     }
                 }
             });
-        });
+            }else{
+                alert('no data available')
+            }
+
+        });*!/
     };
 
     //date range filtering
@@ -144,7 +150,8 @@ $scope.dateOptions = {
         localStorage.removeItem('userId');
         $state.go('/');
     }
-}]);
+}]);*/
+/*
 
 //controller for google map api which return all markers on map based on events
 myApp.controller('ModalInstanceCtrl', function ($uibModalInstance, latLng,$timeout) {
@@ -186,3 +193,4 @@ myApp.controller('ModalInstanceCtrl', function ($uibModalInstance, latLng,$timeo
         $uibModalInstance.dismiss();
     };
 });
+*/

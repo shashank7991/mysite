@@ -13,7 +13,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         .state("dashBoard", {
             url: "/dashBoard/:userId",
             templateUrl: "static/templates/dashBoard.html",
-            controller:"dashBoardController"
+            controller:"clientDashBoardController"
         })
       .state("admin-dashBoard", {
             url: "/admin-dashBoard/:userId",

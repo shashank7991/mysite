@@ -32,12 +32,12 @@
 
     <!--  Driver Dashboard Table-->
     <div class="dashBoardTable">
-        <table ng-table="tableParams" class="table table-bordered" show-filter="true" >
+        <table ng-table="tripTableParams" class="table table-bordered dataTable" show-filter="true" >
             <tbody>
             <tr ng-repeat="val in $data" ng-click="getGeoData(val)">
                 <td data-title="'Trip Id'" filter="{id: 'text'}" sortable="'id'" >{{val.id}}</td>
-                <td data-title="'Distance&nbsp;&nbsp; (Meters)'" sortable="'distance'">{{val.distance}}</td>
-                <td data-title="'Duration&nbsp;&nbsp; (Minutes)'" sortable="'duration'">{{val.duration}}</td>
+                <td data-title="'Distance&nbsp;&nbsp; (Meters)'" sortable="'distance'" filter="{distance: 'text'}">{{val.distance}}</td>
+                <td data-title="'Duration&nbsp;&nbsp; (Minutes)'" sortable="'duration'" filter="{duration: 'text'}">{{val.duration}}</td>
                 <td data-title="'Start Datetime'" ng-bind="getDateTime(val.start_time)"></td>
                 <td  data-title="'End Datetime'" ng-bind="getDateTime(val.end_time)"></td>
                 <td data-title="'Score'" filter="{score: 'text'}" sortable="'score'" >{{val.score}}</td>

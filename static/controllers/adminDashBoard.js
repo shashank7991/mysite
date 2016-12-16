@@ -23,6 +23,10 @@ myApp.controller("adminDashBoardController",['$scope','$http','$stateParams','$u
         //assing response to scope data variable
         $scope.data= resp;
         $scope.tripData= resp;//not using
+            angular.forEach($scope.data,function(val,key){
+               val["email"] = val.user_id.email
+                val["company_id"] = val.user_id.company_id
+            });
         //generate datatables
         $scope.tableParams = new NgTableParams({page: 1, count: 10}, {data: $scope.data});
     });

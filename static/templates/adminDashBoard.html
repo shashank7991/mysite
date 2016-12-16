@@ -10,10 +10,10 @@
         <tbody>
         <tr ng-repeat="val in $data" ng-click="showCharts(val)">
             <td data-title="'Id'" sortable="'id'" filter="{id: 'text'}">{{val.id}}</td>
-            <td data-title="'Email'" sortable="'user_id.email'">{{val.user_id.email}}</td>
-            <td data-title="'Company Id'" sortable="'user_id.company_id'">{{val.user_id.company_id}}</td>
-            <td data-title="'Distance&nbsp;&nbsp; (Meters)'" sortable="'distance'">{{val.distance}}</td>
-            <td data-title="'Duration&nbsp;&nbsp; (Minutes)'" sortable="'duration'">{{val.duration}}</td>
+            <td data-title="'Email'" sortable="'email'" filter="{email: 'text'}">{{val.email}}</td>
+            <td data-title="'Company Id'" sortable="'company_id'" filter="{company_id: 'text'}">{{val.company_id}}</td>
+            <td data-title="'Distance&nbsp;&nbsp; (Meters)'" sortable="'distance'" filter="{distance: 'text'}">{{val.distance}}</td>
+            <td data-title="'Duration&nbsp;&nbsp; (Minutes)'" sortable="'duration'" filter="{duration: 'text'}">{{val.duration}}</td>
             <td data-title="'Date'"  ng-bind="getDate(val.start_time)"></td>
             <td data-title="'Score'" sortable="'score'" filter="{score: 'text'}">{{val.score}}</td>
             <td data-title="'Action'"><span ng-click="deleteUser(val)"><img src="static/img/delete.png" height="15px"></span></td>

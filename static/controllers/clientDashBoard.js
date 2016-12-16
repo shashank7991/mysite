@@ -9,6 +9,12 @@
     console.log('dash board',$stateParams);
       //setting up scope variable
       $scope.companyName = $stateParams.userId;
+
+
+
+$scope.bindTheUser = function () {
+
+
     $scope.isLoading = true;
 
     $http({
@@ -88,7 +94,9 @@
                 console.log('rrrrrrrrrrrrrrrrr', totalResp);
                 $scope.isLoading = false;
 				for(var i=0;i<totalResp.length;i++){
-				totalResp[i].rank=totalResp[i].rank.toFixed(2);
+				//totalResp[i].rank=totalResp[i].rank.toFixed(2);
+				//var num = ;
+				totalResp[i].rank= Math.round(totalResp[i].rank * 100) / 100
 				}
                 $scope.data= totalResp;
                 $scope.tableParams = new NgTableParams({page: 1, count: 10}, {data: $scope.data});
@@ -96,16 +104,19 @@
         },5000);
 
     });
+     };
+
 
     $scope.getTrips = function(val){
 
         $http({
             method: 'POST',
             url: '/trips',
-            data:{'user_id': val.id},
+            data:{'user_id': val},
             headers: {'Content-Type': 'application/json'}
         }).success(function(resp){
             console.log('resp-aaaa',resp);
+            $scope.tripMainData= angular.copy(resp);
 
             $scope.tripData= resp;
             $scope.showTripsTable = true;
@@ -113,6 +124,20 @@
         });
 
     };
+
+
+
+    //binding the table on page load
+       if(isNaN($scope.companyName)){
+          $scope.bindTheUser();//client
+
+      }else{
+          $scope.getTrips($scope.companyName.userId);//driver
+      }
+
+
+
+
 
 
     //Date Selector popup
@@ -147,8 +172,25 @@ $scope.dateOptions = {
     //storing new time in variable
      $scope.getTime=function(val){
         var modifiedTime =val.split("T")[1].split("Z")[0];
-        return modifiedTime;
+        return modifiedTime.split(".")[0];
      };
+
+
+      $scope.getDateTime=function(val){
+		console.log(val);
+        var date = new Date(val);
+        var day = date.getDate();
+        var month = date.getMonth()+1;
+        var year = date.getFullYear();
+		var hours = date.getHours();
+		var min = date.getMinutes();
+		var sec = date.getSeconds();
+        var modifiedDateTime =day+'-'+month+'-'+year+" "+hours+":"+min+":"+sec ;
+        //console.log('myDate--',modifiedDate);
+        return modifiedDateTime;
+        //document.write(day + ' ' + monthNames[monthIndex] + ' ' + year);
+    };
+
 
      //store all geo data from events to new array
     $scope.getGeoData = function(val){
@@ -185,15 +227,14 @@ $scope.dateOptions = {
                     }
                 });
             }else{
-               alert('no data available')
+               alert('No Event Happened During this Trip...!')
             }
 
         });
     };
 
 
-
-    $scope.logout = function(){
+   $scope.logout = function(){
         localStorage.removeItem('userId');
         $state.go('/');
     }
@@ -202,24 +243,24 @@ $scope.dateOptions = {
     $scope.submitDate = function(strtDate,endDate){
         if(strtDate && endDate){
             console.log('asdasd',strtDate,endDate);
-            var stDate = new Date(strtDate);
-            var endDate = new Date(endDate);
+            var stDate = new Date(strtDate).getTime();
+            var endDate = new Date(endDate).getTime();
             console.log('dates-',stDate,endDate);
             var arrayToReturn =[];
-            angular.forEach(angular.copy($scope.EventMainData),function(val,key){
-                var modifiedDate =val.event_ts_local.split("T")[0];
-                var tf = new Date(modifiedDate);
+            angular.forEach(angular.copy($scope.tripMainData),function(val,key){
+                var modifiedDate =val.start_time.split("T")[0];
+                var tf = new Date(modifiedDate).getTime();
 
                 if ((tf > stDate && tf < endDate  ))  {
                     arrayToReturn.push(val);
                 }
             });
-            $scope.eventResp = arrayToReturn;
-            $scope.eventTableParams = new NgTableParams({page: 1, count: 10}, {data: $scope.eventResp});
+            $scope.tripData = arrayToReturn;
+            $scope.tripTableParams = new NgTableParams({page: 1, count: 10}, {data: $scope.tripData});
         }
         else{
-            $scope.eventResp = angular.copy($scope.EventMainData);
-            $scope.eventTableParams = new NgTableParams({page: 1, count: 10}, {data: $scope.eventResp})
+            $scope.tripData = angular.copy($scope.tripMainData);
+            $scope.tripTableParams = new NgTableParams({page: 1, count: 10}, {data: $scope.tripData})
         }
 
     };

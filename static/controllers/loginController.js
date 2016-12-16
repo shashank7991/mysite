@@ -16,6 +16,7 @@ myApp.controller("loginController",['$scope','$http','$state',function($scope,$h
                localStorage.setItem('userId',user.id);
                var userId = resp[0].id;
                //Rolebase login
+               console.log("user ",user);
                if(user.role == 'D'){
                    $state.go('dashBoard',{'userId':userId});
                }else if(user.role == "A"){
@@ -24,10 +25,17 @@ myApp.controller("loginController",['$scope','$http','$state',function($scope,$h
                    $state.go('client-dashBoard',{'userId':user.company_id});
                }
 
+           }else if(resp.msg == "No Matching records found!"){
+               alert("No Matching records found!");
+               $scope.user.email="";
+               $scope.user.password="";
+
            }
 
         }).error(function(){
-           alert('Please enter correct Details...')
+           alert('Please enter correct Details...');
+           $scope.user.email="";
+               $scope.user.password="";
        });
 
     }

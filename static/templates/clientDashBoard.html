@@ -16,9 +16,9 @@
 	</div>
     <div class="col-lg-5">
         <h3>Drivers Details:</h3>
-        <table ng-table="tableParams" class="table table-bordered" show-filter="true" >
+        <table ng-table="tableParams" class="table table-bordered dataTable" show-filter="true" >
             <tbody>
-            <tr ng-repeat="val in $data " ng-click="getTrips(val)">
+            <tr ng-repeat="val in $data " ng-click="getTrips(val.id)">
                 <td data-title="'Id'" sortable="'rank'" >{{$index+1}}</td>
                 <td data-title="'Email Id'" sortable="'email'" filter="{email: 'text'}">{{val.email}}</td>
                 <td data-title="'Score'" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"  sortable="'rank'" filter="{rank: 'text'}" >{{val.rank}}</td>
@@ -33,32 +33,12 @@
 	</div>
 
 
+
     <!--Show Trips of Users-->
     <div class="dashBoardTable" ng-show="showTripsTable">
         <h3>Trips Details:</h3>
 
-
-        <table ng-table="tripTableParams" class="table table-bordered" show-filter="true">
-            <tbody>
-            <tr ng-repeat="val in $data" ng-click="getGeoData(val)">
-                <td data-title="'Trip Id'" sortable="'id'" filter="{id: 'text'}" >{{val.id}}</td>
-                <td data-title="'Distance&nbsp;&nbsp; (Meters)'" sortable="'distance'" filter="{distance: 'text'}" >{{val.distance}}</td>
-                <td data-title="'Duration&nbsp;&nbsp; (Minutes)'" sortable="'duration'" >{{val.duration}}</td>
-                <td data-title="'Date'" ng-bind="getDate(val.start_time)"></td>
-                <td data-title="'Start Time'" ng-bind="getTime(val.start_time)"></td>
-                <td data-title="'End Time'" ng-bind="getTime(val.end_time)"></td>
-                <td data-title="'Score'" sortable="'score'" filter="{score: 'text'}" >{{val.score}}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!--Show Events based on Users-> Trips -->
-    <div class="dashBoardTable" ng-show="showEventData">
-        <h3>Events Details:</h3>
-
-        <br>
-                <!--Date Selector for filtering-->
+          <!--Date Selector for filtering-->
         <div class="col-lg-12">
             <div class="input-group col-lg-4 pull-left" style="width:230px;border: 1px solid black; margin-right: 5px">
 
@@ -81,6 +61,30 @@
         </div>
 
         <br>
+        <br>
+
+
+        <table ng-table="tripTableParams" class="table table-bordered dataTable" show-filter="true">
+            <tbody>
+            <tr ng-repeat="val in $data" ng-click="getGeoData(val)">
+                <td data-title="'Trip Id'" sortable="'id'" filter="{id: 'text'}" >{{val.id}}</td>
+                <td data-title="'Distance&nbsp;&nbsp; (Meters)'" sortable="'distance'" filter="{distance: 'text'}" >{{val.distance}}</td>
+                <td data-title="'Duration&nbsp;&nbsp; (Minutes)'" sortable="'duration'" filter="{duration: 'text'}" >{{val.duration}}</td>
+                <td data-title="'Date'" ng-bind="getDate(val.start_time)"></td>
+                <td data-title="'Start Time'" ng-bind="getTime(val.start_time)"></td>
+                <td data-title="'End Time'" ng-bind="getTime(val.end_time)"></td>
+                <td data-title="'Score'" sortable="'score'" filter="{score: 'text'}" >{{val.score}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--Show Events based on Users-> Trips -->
+    <div class="dashBoardTable" ng-show="showEventData">
+        <h3>Events Details:</h3>
+
+        <br>
+
 
         <!--Event Data Table-->
         <table  ng-table="eventTableParams" class="table table-bordered" show-filter="true">
